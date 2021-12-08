@@ -2045,7 +2045,7 @@ class GUI_Manager(ScreenManager):
         self.data_from_button.markup = True
         self.data_from_button.text = f'[color={get_hex_from_color(self.config_variables_dict["Data IN"])}] Data IN (MB) [/color]'
         self.data_from_button.sorting_key = 'sort data_in'
-        self.data_from_button.on_press = lambda : self.generate_table_sort_wrapper(calling_button = data_from_button)
+        self.data_from_button.on_press = lambda : self.generate_table_sort_wrapper(calling_button = self.data_from_button)
         self.data_from_button.id = 'sort data_in'
         self.data_from_button.background_color = (.15,.15,.15,.8)
 
@@ -2053,7 +2053,7 @@ class GUI_Manager(ScreenManager):
         self.data_to_button.markup = True
         self.data_to_button.text = f'[color={get_hex_from_color(self.config_variables_dict["Data OUT"])}] Data OUT (MB) [/color]'
         self.data_to_button.sorting_key = 'sort data_out' 
-        self.data_to_button.on_press = lambda : self.generate_table_sort_wrapper(calling_button = data_to_button)
+        self.data_to_button.on_press = lambda : self.generate_table_sort_wrapper(calling_button = self.data_to_button)
         self.data_to_button.id = 'sort data_out'
         self.data_to_button.background_color = (.15,.15,.15,.8)
 
