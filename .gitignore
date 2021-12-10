@@ -1,2 +1,4 @@
 .vscode/launch.json
 configuration/config.json
+source/__pycache__
+source/widgets/__pycache__
