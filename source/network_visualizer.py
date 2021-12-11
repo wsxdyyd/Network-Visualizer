@@ -5,6 +5,7 @@
 # I stand on the shoulders of giants and desire to make contributions for the betterment of humanity.
 
 #Additional Authors:
+#comments
 
 
 if __name__ == "__main__": #start like this to prevent a bug on microsoft OS (Something to do with multiple windows + kivy/multiprocessing)
