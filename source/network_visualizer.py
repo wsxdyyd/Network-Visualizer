@@ -6,6 +6,7 @@
 
 #Additional Authors:
 #comments
+#2nd try
 
 
 if __name__ == "__main__": #start like this to prevent a bug on microsoft OS (Something to do with multiple windows + kivy/multiprocessing)
