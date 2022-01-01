@@ -1,0 +1,42 @@
+import netifaces as ni
+def get_macIP_dic():
+    interface_list = ni.interfaces()
+    interfaces = {}
+    net_categories = {}
+    categories_list = []
+    for interface in interface_list:
+        for categories in list(ni.ifaddresses(interface).keys()):
+            if categories not in categories_list:
+                categories_list.append(categories)
+    for category in categories_list:
+        if category == 2:
+            categories_list[categories_list.index(category)] = "Wifi"
+        if category == 18:
+            categories_list[categories_list.index(category)] = "Ehternet"
+        if category == 30:
+            categories_list[categories_list.index(category)] = "IPv6"
+        if category not in [18, 2, 30]:
+            categories_list[categories_list.index(category)] = "other"
+    for category in categories_list:
+        if category == 'Ehternet':
+            net_categories["Ethernet"] = {}
+            for interface in interface_list:
+                if 18 in list(ni.ifaddresses(interface).keys()):
+                    net_categories["Ethernet"][interface] = ni.ifaddresses(interface).get(18)
+        if category == 'Wifi':
+            net_categories["Wifi"] = {}
+            for interface in interface_list:
+                if 2 in list(ni.ifaddresses(interface).keys()):
+                    net_categories["Wifi"][interface] = ni.ifaddresses(interface).get(2)
+        if category == 'IPv6':
+            net_categories["IPv6"] = {}
+            for interface in interface_list:
+                if 30 in list(ni.ifaddresses(interface).keys()):
+                    net_categories["IPv6"][interface] = ni.ifaddresses(interface).get(30)
+        if category not in [18, 2, 30]:
+            net_categories["other"] = {}
+            for interface in interface_list:
+                if category in list(ni.ifaddresses(interface).keys()):
+                    net_categories["other"][interface] = ni.ifaddresses(interface).get(i)
+
+    return net_categories
