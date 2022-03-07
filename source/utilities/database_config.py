@@ -7,11 +7,28 @@
 
 import pickle
 import sqlite3
+
 global db
+import os
+import sys
+
+if getattr(sys, "frozen", False):
+    # If the application is run as a bundle, the PyInstaller bootloader
+    # extends the sys module by a flag frozen=True and sets the app
+    # path into variable _MEIPASS'.
+    resource_path = sys._MEIPASS
+
+else:
+    # otherwise get the path from where the python file is executed
+    resource_path = os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    )
 
 
-db = sqlite3.connect('../assets/database/sessions.sqlite', isolation_level=None, timeout=10)
+database_location = os.path.join(resource_path, "assets/database/sessions.sqlite")
+
+db = sqlite3.connect(database_location, isolation_level=None, timeout=10)
 db.text_factory = str
+
 sqlite3.register_adapter(dict, lambda d: pickle.dumps(d))
 sqlite3.register_converter("dictionary", lambda d: pickle.loads(d))
-
