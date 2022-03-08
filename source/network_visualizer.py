@@ -123,7 +123,7 @@ if __name__ == "__main__":  # start like this to prevent a bug with microsoft OS
             return self.rootWidget
 
         def go_to_github(self, calling_button:Button) -> None:
-
+            #add calling_button
             """
             On click go to latest Network Visualizer github repositiory
             """
